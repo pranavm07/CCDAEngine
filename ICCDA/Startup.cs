@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Unity;
 using Connector.Component;
+using UnityDependencyResolver.Lib;
 namespace ICCDA
 {
     public class Startup
@@ -12,6 +13,7 @@ namespace ICCDA
         {
             IUnityContainer container = new UnityContainer();
             ConnectorDependencyRegister.RegisterConnectionDependency(container);
+            container.Resolve<UnityContainer>();
         }
     }
 }

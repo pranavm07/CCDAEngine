@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Configuration.Component;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Connector.Component
     {
         public static void RegisterConnectionDependency(IUnityContainer container)
         {
-            container.RegisterType<IConnector, Connector>();
+            ConfigurationDependencyRegister.RegisterConfigurationDependency(container);
         }
     }
 }

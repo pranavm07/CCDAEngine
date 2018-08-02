@@ -33,8 +33,26 @@
     <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.8.6\lib\net40\CommonServiceLocator.dll</HintPath>
     </Reference>
+    <Reference Include="DependencyResolver, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DependencyResolver.1.0.0.3\lib\net40\DependencyResolver.dll</HintPath>
+    </Reference>
+    <Reference Include="DependencyResolver.AppDomainHelper, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DependencyResolver.1.0.0.3\lib\net40\DependencyResolver.AppDomainHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=2.1.30214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Core.2.1.30214.0\lib\Net40\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.1.30214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Interfaces.2.1.30214.0\lib\Net40\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.1.30214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Linq.2.1.30214.0\lib\Net40\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.1.30214.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-PlatformServices.2.1.30214.0\lib\Net40\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +70,9 @@
     <Reference Include="Unity.ServiceLocation, Version=2.1.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.8.6\lib\net40\Unity.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="UnityDependencyResolver.Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UnityDependencyResolver.1.0.0\lib\net40\UnityDependencyResolver.Lib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CCDAEngine.cs" />
@@ -60,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Unity.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Connector.Component\Connector.Component.csproj">

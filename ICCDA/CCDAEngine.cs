@@ -9,7 +9,7 @@ namespace ICCDA
     public sealed class CCDAEngine
     {
        
-         CCDAEngine()
+        static CCDAEngine()
         {
             
             Startup.Register();
