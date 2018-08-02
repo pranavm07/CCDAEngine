@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using ICCDA;
 
 namespace DummyClient
 {
@@ -11,6 +12,7 @@ namespace DummyClient
     {
         static void Main(string[] args)
         {
+            CCDAEngine.Connect("serverName", "Db", "user", "pwd");
 
             string myXMLfile = @"E:\CCDA_787.xml";
             DataSet ds = new DataSet();
