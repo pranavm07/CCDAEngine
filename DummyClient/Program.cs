@@ -19,7 +19,7 @@ namespace DummyClient
                 Validator validator = new Validator();
                 validator.AddSchema("D:/CCDA.xsd");
                 validator.Validate(new XmlTextReader("D:/CCDA_787.xml"));
-                ErrorLogging("Success");
+                ErrorLogging("Successfully validated");
 
                 //var schematron = new Validator();
                 //Schema schematronSchema = new Schema();
