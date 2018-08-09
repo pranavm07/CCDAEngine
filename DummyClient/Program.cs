@@ -26,6 +26,7 @@ namespace DummyClient
                 //schematronSchema.Load(new FileStream("D:/Test.xsd", FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
                 //schematron.AddSchema(schematronSchema);
                 //schematron.Validate(instance);
+
             }
             catch (Exception ex)
             {
