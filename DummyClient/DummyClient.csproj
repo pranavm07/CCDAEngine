@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Schematron, Version=0.6.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Schematron.0.6.4\lib\net40\Schematron.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +51,9 @@
       <Project>{fa67bb03-dfb0-4255-bd25-c55d8c586933}</Project>
       <Name>ICCDA</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
