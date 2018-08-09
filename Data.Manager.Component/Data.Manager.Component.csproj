@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dto\Dto.csproj">
+      <Project>{437d7e83-445f-48bb-94c9-4885465ab834}</Project>
+      <Name>Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Validator\Validator.csproj">
       <Project>{e666adc8-3cd5-4453-93bb-001b7f6200f5}</Project>
       <Name>Validator</Name>

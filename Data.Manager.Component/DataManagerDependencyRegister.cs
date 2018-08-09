@@ -6,7 +6,7 @@ namespace Data.Manager.Component
     {
         public static void RegisterDMComponents(IUnityContainer container)
         {
-            container.RegisterType<IDataManager, DataManager>();
+            //container.RegisterType<IDataManager, DataManager>();
         }
     }
 }

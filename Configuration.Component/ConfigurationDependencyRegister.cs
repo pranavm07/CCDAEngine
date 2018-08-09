@@ -10,9 +10,9 @@ namespace Configuration.Component
     {
         public static void RegisterConfigurationDependency(IUnityContainer container)
         {
-            DataManagerDependencyRegister.RegisterDMComponents(container);
-            container.RegisterType<ISchemaGenerator, SchemaGenerator>();
-            container.RegisterType<ISchemaMapper, SchemaMapper>();
+            //DataManagerDependencyRegister.RegisterDMComponents(container);
+            //container.RegisterType<ISchemaGenerator, SchemaGenerator>();
+            //container.RegisterType<ISchemaMapper, SchemaMapper>();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Connector.Component
     {
         public static void RegisterConnectionDependency(IUnityContainer container)
         {
-            ConfigurationDependencyRegister.RegisterConfigurationDependency(container);
+            //ConfigurationDependencyRegister.RegisterConfigurationDependency(container);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Configuration.Component;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Connector.Component
                 ["password"] = password
             };
             SqlConnection catalogueConnection = new SqlConnection(connectionBuilder.ConnectionString);
+            var result = SchemaGenerator.GenerateDbSchema(catalogueConnection);
             return catalogueConnection;
         }
     }

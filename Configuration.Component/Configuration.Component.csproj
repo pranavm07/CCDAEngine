@@ -69,6 +69,13 @@
       <Project>{8736d6a9-06c4-4063-b9a9-72d786863008}</Project>
       <Name>Data.Manager.Component</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dto\Dto.csproj">
+      <Project>{437d7e83-445f-48bb-94c9-4885465ab834}</Project>
+      <Name>Dto</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Schema.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

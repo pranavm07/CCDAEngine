@@ -8,12 +8,6 @@ namespace ICCDA
 {
     public sealed class CCDAEngine
     {
-       
-        static CCDAEngine()
-        {
-            
-            Startup.Register();
-        }
 
         public static  bool Connect(string serverAddress, string dbName, string userName, string password)
         {

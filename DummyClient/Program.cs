@@ -12,8 +12,8 @@ namespace DummyClient
     {
         static void Main(string[] args)
         {
-            CCDAEngine.Connect("serverName", "Db", "user", "pwd");
-
+            CCDAEngine.Connect("pmswebdatabasedev.database.windows.net", "PMS_EHR_New", "devlogin", "1231!#HOLA!");
+         
             string myXMLfile = @"E:\CCDA_787.xml";
             DataSet ds = new DataSet();
             FileStream fsReadXml = new System.IO.FileStream(myXMLfile, System.IO.FileMode.Open);
