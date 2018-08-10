@@ -17,7 +17,7 @@ namespace DummyClient
             try
             {
                 Validator validator = new Validator();
-                validator.AddSchema("E:/CCDASchema/CDA.xsd");
+                validator.AddSchema("E:/CDA_SDTCSchema/infrastructure/cda/CDA_SDTC.xsd");
                 validator.Validate("E:/CCDASchema/sample/validCCDA.xml");
                 ErrorLogging("Success");
 
