@@ -75,8 +75,8 @@ namespace DummyClient
                 }
             }
             catch (Exception ex)
-            {
-                ErrorLogging(ex.Message);
+             {
+                //ErrorLogging(ex.Message);
             }
         }
 
@@ -98,6 +98,43 @@ namespace DummyClient
                 sw.WriteLine("Message: " + Message);
 
             }
+        }
+
+
+        public static  string SchemaGeneration()
+        {
+
+
+            //*************************************************
+            //Code for convert model to xsd file
+
+            //var schemas = new XmlSchemas();
+            //var exporter = new XmlSchemaExporter(schemas);
+            //var mapping = new XmlReflectionImporter().ImportTypeMapping(typeof(ConfidentialityCode));
+            //exporter.ExportTypeMapping(mapping);
+            //var schemaWriter = new StringWriter();
+            //foreach (XmlSchema schema in schemas)
+            //{
+            //    schema.Write(schemaWriter);
+            //}
+
+            //return schemaWriter.ToString();
+
+
+
+            //**************************************
+            //Read Xsd file and get element name
+
+
+            var xs = XNamespace.Get("http://www.w3.org/2001/XMLSchema");           
+            var doc = XDocument.Load("D:/Confidentialitycode.xsd");
+            foreach (var el in doc.Descendants(xs + "element"))
+            {                
+                Console.WriteLine(el.FirstAttribute.Value);
+                Console.WriteLine(el.Attribute("name").Value);                
+            }
+            Console.ReadLine();
+            return null;
         }
 
     }
