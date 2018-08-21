@@ -8,6 +8,13 @@ using System.Xml;
 using ICCDA;
 using Schematron;
 using MySql.Data.MySqlClient;
+using System.Xml.Serialization;
+using System.Xml.Schema;
+using static DummyClient.Components;
+using System.Xml.Linq;
+using System.Collections;
+using System.Xml.XPath;
+using System.Diagnostics;
 
 namespace DummyClient
 {
@@ -101,41 +108,120 @@ namespace DummyClient
         }
 
 
-        public static  string SchemaGeneration()
+        public static string SchemaGeneration()
         {
+            List<Patient> pat = new List<Patient>();
 
+            XmlSchemaSet schemaSet = new XmlSchemaSet();        
+            schemaSet.Add("http://www.w3.org/2001/XMLSchema", "D:/Customer.xsd");
+            schemaSet.Compile();
 
-            //*************************************************
-            //Code for convert model to xsd file
-
-            //var schemas = new XmlSchemas();
-            //var exporter = new XmlSchemaExporter(schemas);
-            //var mapping = new XmlReflectionImporter().ImportTypeMapping(typeof(ConfidentialityCode));
-            //exporter.ExportTypeMapping(mapping);
-            //var schemaWriter = new StringWriter();
-            //foreach (XmlSchema schema in schemas)
-            //{
-            //    schema.Write(schemaWriter);
-            //}
-
-            //return schemaWriter.ToString();
-
-
-
-            //**************************************
-            //Read Xsd file and get element name
-
-
-            var xs = XNamespace.Get("http://www.w3.org/2001/XMLSchema");           
-            var doc = XDocument.Load("D:/Confidentialitycode.xsd");
-            foreach (var el in doc.Descendants(xs + "element"))
-            {                
-                Console.WriteLine(el.FirstAttribute.Value);
-                Console.WriteLine(el.Attribute("name").Value);                
+            // Retrieve the compiled XmlSchema object from the XmlSchemaSet
+            // by iterating over the Schemas property.
+            XmlSchema customerSchema = null;
+            foreach (XmlSchema schema in schemaSet.Schemas())
+            {
+                customerSchema = schema;
             }
-            Console.ReadLine();
+
+            // Iterate over each XmlSchemaElement in the Values collection
+            // of the Elements property.
+            foreach (XmlSchemaElement element in customerSchema.Elements.Values)
+            {
+
+                //Console.WriteLine("Element: {0}", element.Name);
+                pat.Add(new Patient()
+                {
+                    TableName = element.Name,
+                    ColumnName = element.Name
+                });
+
+                // Get the complex type of the Customer element.
+                XmlSchemaComplexType complexType = element.ElementSchemaType as XmlSchemaComplexType;
+
+                // If the complex type has any attributes, get an enumerator 
+                // and write each attribute name to the console.
+                if (complexType.AttributeUses.Count > 0)
+                {
+                    IDictionaryEnumerator enumerator =
+                        complexType.AttributeUses.GetEnumerator();
+
+                    while (enumerator.MoveNext())
+                    {
+                        XmlSchemaAttribute attribute =
+                            (XmlSchemaAttribute)enumerator.Value;
+
+                        //Console.WriteLine("Attribute: {0}", attribute.Name);
+                      
+                        pat.Add(new Patient()
+                        {
+                            TableName = element.Name,
+                            ColumnName = attribute.Name
+                        });
+                    }
+                }
+
+                // Get the sequence particle of the complex type.
+                XmlSchemaSequence sequence = complexType.ContentTypeParticle as XmlSchemaSequence;
+
+                // Iterate over each XmlSchemaElement in the Items collection.
+                foreach (XmlSchemaElement childElement in sequence.Items)
+                {
+                    //Console.WriteLine("Element: {0}", childElement.Name);                   
+
+                    pat.Add(new Patient()
+                    {
+                        TableName = element.Name,
+                        ColumnName = childElement.Name
+                    });
+
+                    // Get the complex type of the Customer element.
+                    XmlSchemaComplexType complexTypec = childElement.ElementSchemaType as XmlSchemaComplexType;
+
+                    // If the complex type has any attributes, get an enumerator 
+                    // and write each attribute name to the console.
+                    if (complexTypec.AttributeUses.Count > 0)
+                    {
+                        IDictionaryEnumerator enumerator =
+                            complexTypec.AttributeUses.GetEnumerator();
+
+                        while (enumerator.MoveNext())
+                        {
+                            XmlSchemaAttribute attribute =
+                                (XmlSchemaAttribute)enumerator.Value;
+
+                            //Console.WriteLine("Attribute: {0}", attribute.Name);                          
+
+                            pat.Add(new Patient()
+                            {
+                                TableName = childElement.Name,
+                                ColumnName = attribute.Name
+                            });
+                        }
+                    }
+                }
+                AddOrUpdate(pat);
+            }
             return null;
         }
 
+        public static void AddOrUpdate(List<Patient> pat)
+        {         
+            foreach (var kvp in pat)
+            {               
+                Console.WriteLine("TableName = {0}, Column = {1}", kvp.TableName, kvp.ColumnName);
+            }
+            Console.ReadLine();
+            //var dictval = from x in pat
+            //              where x.TableName.Contains("Customer")
+            //              select x;
+            //Console.WriteLine(dictval.First().TableName);
+            //Console.ReadKey();
+        }
+      
+         
     }
+           
 }
+
+ 
