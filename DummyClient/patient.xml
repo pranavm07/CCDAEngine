@@ -1,0 +1,136 @@
+<xsd:schema targetNamespace="urn:schemas-microsoft-com:sql:SqlRowSet1" xmlns:schema="urn:schemas-microsoft-com:sql:SqlRowSet1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sqltypes="http://schemas.microsoft.com/sqlserver/2004/sqltypes" elementFormDefault="qualified">
+  <xsd:import namespace="http://schemas.microsoft.com/sqlserver/2004/sqltypes" schemaLocation="http://schemas.microsoft.com/sqlserver/2004/sqltypes/sqltypes.xsd" />
+  <xsd:element name="dbo.Patient">
+    <xsd:complexType>
+      <xsd:attribute name="PatientId" type="sqltypes:uniqueidentifier" use="required" />
+      <xsd:attribute name="PatientMrn">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="SalutationId" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="FirstName" use="required">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="MiddleName">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="LastName" use="required">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="Suffix">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="Dob" type="sqltypes:datetime" use="required" />
+      <xsd:attribute name="GenderId" type="sqltypes:uniqueidentifier" use="required" />
+      <xsd:attribute name="MaritalStatusId" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="PreferredLanguageId" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="EthnicityId" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="HomePhone">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="WorkPhone">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="Mobile">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="Fax">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="EmailAddress">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="PrimaryPhysicianId" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="ReferalProviderId" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="ReferalPatientId" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="CreatedOn" type="sqltypes:datetime" use="required" />
+      <xsd:attribute name="ModifiedOn" type="sqltypes:datetime" />
+      <xsd:attribute name="CreatedBy" type="sqltypes:uniqueidentifier" use="required" />
+      <xsd:attribute name="ModifiedBy" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="PatientSourceId" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="PatientTypeId" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="PortalEnabled" type="sqltypes:bit" />
+      <xsd:attribute name="IsEnabled" use="required">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:char" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+            <xsd:maxLength value="1" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="ImagePath">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="Ssn">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="GenderIdentity" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="GenderIdentityAdditionalValue">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+            <xsd:maxLength value="100" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="SexualOrientation" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="SexualOrientationAdditionalValue">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+            <xsd:maxLength value="100" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="MultipleBI" type="sqltypes:bit" />
+      <xsd:attribute name="BirthOrder" type="sqltypes:int" />
+      <xsd:attribute name="BirthSex" type="sqltypes:uniqueidentifier" />
+      <xsd:attribute name="LastExportDate" type="sqltypes:datetime" />
+      <xsd:attribute name="PreviousName">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="PracticeNpi">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="PracticeTaxonomyCode">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="OtherSexualOrientation">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="OtherGenderIdentity">
+        <xsd:simpleType>
+          <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52" />
+        </xsd:simpleType>
+      </xsd:attribute>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

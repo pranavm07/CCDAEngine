@@ -24,6 +24,7 @@ namespace DummyClient
         {
             try
             {
+                SchemaGeneration();
                 MySqlConnection mysqlconnection;
                 string server;
                 string database;
@@ -110,114 +111,60 @@ namespace DummyClient
 
         public static string SchemaGeneration()
         {
-            List<Patient> pat = new List<Patient>();
-
-            XmlSchemaSet schemaSet = new XmlSchemaSet();        
-            schemaSet.Add("http://www.w3.org/2001/XMLSchema", "D:/Customer.xsd");
-            schemaSet.Compile();
-
-            // Retrieve the compiled XmlSchema object from the XmlSchemaSet
-            // by iterating over the Schemas property.
-            XmlSchema customerSchema = null;
-            foreach (XmlSchema schema in schemaSet.Schemas())
+            try
             {
-                customerSchema = schema;
-            }
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Select ");
+                string innerjoin = "Inner Join";
+                string leftjoin = "Outer Join";
+                string JoinTableName = string.Empty;
+                XElement xelement = XElement.Load(@"patient.xml");
+                var from = xelement.Attribute("name").Value;
+                IEnumerable<XElement> table = xelement.Elements();
+                List<string> AttrinuteList = new List<string>();
 
-            // Iterate over each XmlSchemaElement in the Values collection
-            // of the Elements property.
-            foreach (XmlSchemaElement element in customerSchema.Elements.Values)
-            {
-
-                //Console.WriteLine("Element: {0}", element.Name);
-                pat.Add(new Patient()
-                {
-                    TableName = element.Name,
-                    ColumnName = element.Name
-                });
-
-                // Get the complex type of the Customer element.
-                XmlSchemaComplexType complexType = element.ElementSchemaType as XmlSchemaComplexType;
-
-                // If the complex type has any attributes, get an enumerator 
-                // and write each attribute name to the console.
-                if (complexType.AttributeUses.Count > 0)
-                {
-                    IDictionaryEnumerator enumerator =
-                        complexType.AttributeUses.GetEnumerator();
-
-                    while (enumerator.MoveNext())
+                var fkEntities = table.Where(x => !string.IsNullOrEmpty(x.Attribute("ForeignKeyTable").Value))
+                    .Select(x => new
                     {
-                        XmlSchemaAttribute attribute =
-                            (XmlSchemaAttribute)enumerator.Value;
-
-                        //Console.WriteLine("Attribute: {0}", attribute.Name);
-                      
-                        pat.Add(new Patient()
-                        {
-                            TableName = element.Name,
-                            ColumnName = attribute.Name
-                        });
+                        rightCol = x.Attribute("ForeignKeyColumn").Value,
+                        Leftcol = x.Attribute("name").Value
+                    }).ToList();
+                foreach (var item in table)
+                {
+                    if (string.IsNullOrEmpty(item.Attribute("ForeignKeyTable").Value))
+                    {
+                        string st = item.Attribute("name").Value + " AS" + " " + item.Attribute("Displayname").Value + ",";
+                        sb.Append(st);
+                    }
+                    else
+                    {
+                        sb.Append(item.Attribute("ForeignKeyColumn").Value + " AS" + " " + item.Attribute("Displayname").Value);
+                    }
+                }
+                sb.Append(" from " + from + " ");
+                if (fkEntities.Count > 0)
+                {
+                    foreach (var item in fkEntities)
+                    {
+                        sb.AppendLine(innerjoin + " " + table.Where(x => x.Attribute("ForeignKeyColumn").Value == item.rightCol)
+                            .Select(x => x.Attribute("ForeignKeyTable").Value).FirstOrDefault() + " " + " on "
+                            + item.Leftcol + "=" + item.rightCol);
                     }
                 }
 
-                // Get the sequence particle of the complex type.
-                XmlSchemaSequence sequence = complexType.ContentTypeParticle as XmlSchemaSequence;
 
-                // Iterate over each XmlSchemaElement in the Items collection.
-                foreach (XmlSchemaElement childElement in sequence.Items)
-                {
-                    //Console.WriteLine("Element: {0}", childElement.Name);                   
 
-                    pat.Add(new Patient()
-                    {
-                        TableName = element.Name,
-                        ColumnName = childElement.Name
-                    });
 
-                    // Get the complex type of the Customer element.
-                    XmlSchemaComplexType complexTypec = childElement.ElementSchemaType as XmlSchemaComplexType;
 
-                    // If the complex type has any attributes, get an enumerator 
-                    // and write each attribute name to the console.
-                    if (complexTypec.AttributeUses.Count > 0)
-                    {
-                        IDictionaryEnumerator enumerator =
-                            complexTypec.AttributeUses.GetEnumerator();
-
-                        while (enumerator.MoveNext())
-                        {
-                            XmlSchemaAttribute attribute =
-                                (XmlSchemaAttribute)enumerator.Value;
-
-                            //Console.WriteLine("Attribute: {0}", attribute.Name);                          
-
-                            pat.Add(new Patient()
-                            {
-                                TableName = childElement.Name,
-                                ColumnName = attribute.Name
-                            });
-                        }
-                    }
-                }
-                AddOrUpdate(pat);
+                return null;
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public static void AddOrUpdate(List<Patient> pat)
-        {         
-            foreach (var kvp in pat)
-            {               
-                Console.WriteLine("TableName = {0}, Column = {1}", kvp.TableName, kvp.ColumnName);
-            }
-            Console.ReadLine();
-            //var dictval = from x in pat
-            //              where x.TableName.Contains("Customer")
-            //              select x;
-            //Console.WriteLine(dictval.First().TableName);
-            //Console.ReadKey();
-        }
+        
       
          
     }

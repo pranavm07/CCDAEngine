@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="patient.xml" />
     <Content Include="validCCDA.xml" />
   </ItemGroup>
   <ItemGroup>
