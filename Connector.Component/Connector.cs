@@ -20,7 +20,7 @@ namespace Connector.Component
                 ["password"] = password
             };
             SqlConnection catalogueConnection = new SqlConnection(connectionBuilder.ConnectionString);
-            var result = SchemaGenerator.GenerateDbSchema(catalogueConnection);
+            //var result = SchemaGenerator.GenerateDbSchema(catalogueConnection);
             return catalogueConnection;
         }
     }

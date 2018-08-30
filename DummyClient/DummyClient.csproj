@@ -51,7 +51,7 @@
   <ItemGroup>
     <Reference Include="MySql.Data, Version=8.0.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\mysql-connecotr-net-6.9.12\v4.0\MySql.Data.dll</HintPath>
+      <HintPath>..\..\..\mysql6.9.12\mysql-connecotr-net-6.9.12\v4.0\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Schematron, Version=0.6.0.18, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Schematron.0.6.18\lib\net40\Schematron.dll</HintPath>
@@ -65,12 +65,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components.cs" />
-    <Compile Include="Patient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Data.Manager.Component\Data.Manager.Component.csproj">
+      <Project>{8736d6a9-06c4-4063-b9a9-72d786863008}</Project>
+      <Name>Data.Manager.Component</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ICCDA\ICCDA.csproj">
       <Project>{fa67bb03-dfb0-4255-bd25-c55d8c586933}</Project>
       <Name>ICCDA</Name>

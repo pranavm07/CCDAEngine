@@ -1,20 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Xml;
-using ICCDA;
 using Schematron;
 using MySql.Data.MySqlClient;
-using System.Xml.Serialization;
-using System.Xml.Schema;
-using static DummyClient.Components;
-using System.Xml.Linq;
-using System.Collections;
-using System.Xml.XPath;
-using System.Diagnostics;
+using Data.Manager.Component;
 
 namespace DummyClient
 {
@@ -24,7 +13,8 @@ namespace DummyClient
         {
             try
             {
-                SchemaGeneration();
+                DataManager.QueryGenerator();
+
                 MySqlConnection mysqlconnection;
                 string server;
                 string database;
@@ -83,7 +73,7 @@ namespace DummyClient
                 }
             }
             catch (Exception ex)
-             {
+            {
                 //ErrorLogging(ex.Message);
             }
         }
@@ -108,67 +98,7 @@ namespace DummyClient
             }
         }
 
-
-        public static string SchemaGeneration()
-        {
-            try
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.Append("Select ");
-                string innerjoin = "Inner Join";
-                string leftjoin = "Outer Join";
-                string JoinTableName = string.Empty;
-                XElement xelement = XElement.Load(@"patient.xml");
-                var from = xelement.Attribute("name").Value;
-                IEnumerable<XElement> table = xelement.Elements();
-                List<string> AttrinuteList = new List<string>();
-
-                var fkEntities = table.Where(x => !string.IsNullOrEmpty(x.Attribute("ForeignKeyTable").Value))
-                    .Select(x => new
-                    {
-                        rightCol = x.Attribute("ForeignKeyColumn").Value,
-                        Leftcol = x.Attribute("name").Value
-                    }).ToList();
-                foreach (var item in table)
-                {
-                    if (string.IsNullOrEmpty(item.Attribute("ForeignKeyTable").Value))
-                    {
-                        string st = item.Attribute("name").Value + " AS" + " " + item.Attribute("Displayname").Value + ",";
-                        sb.Append(st);
-                    }
-                    else
-                    {
-                        sb.Append(item.Attribute("ForeignKeyColumn").Value + " AS" + " " + item.Attribute("Displayname").Value);
-                    }
-                }
-                sb.Append(" from " + from + " ");
-                if (fkEntities.Count > 0)
-                {
-                    foreach (var item in fkEntities)
-                    {
-                        sb.AppendLine(innerjoin + " " + table.Where(x => x.Attribute("ForeignKeyColumn").Value == item.rightCol)
-                            .Select(x => x.Attribute("ForeignKeyTable").Value).FirstOrDefault() + " " + " on "
-                            + item.Leftcol + "=" + item.rightCol);
-                    }
-                }
-
-
-
-
-
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        
-      
-         
     }
-           
 }
 
  
